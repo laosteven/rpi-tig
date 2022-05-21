@@ -1,3 +1,0 @@
-#!/bin/sh
-
-listen -8at | grep --line-buffered udr0
