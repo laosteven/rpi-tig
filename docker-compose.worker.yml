@@ -17,6 +17,7 @@ telegraf:
   image: telegraf:latest
   container_name: telegraf
   restart: always
+  user: 1000:995
   environment:
    - HOST_PROC=/host/proc
   privileged: true
@@ -30,3 +31,4 @@ telegraf:
     - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     - /proc:/host/proc:ro
     - /var/log:/host/var/log:ro
+    - /var/run/docker.sock:/var/run/docker.sock
