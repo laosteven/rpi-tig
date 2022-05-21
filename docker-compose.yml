@@ -3,12 +3,10 @@ influxdb:
   container_name: influxdb
   restart: always
 #  mem_limit: 192m
-# Those ports don't need to be exposed to the local host, only
-# Telegraf/grafana are talking to it.
-#  ports:
-#    - "8083:8083"
-#    - "8086:8086"
-#    - "8090:8090"
+  ports:
+   - "8083:8083"
+   - "8086:8086"
+   - "8090:8090"
   env_file:
     - 'env.influxdb'
   volumes:
@@ -21,6 +19,7 @@ telegraf:
   image: telegraf:latest
   container_name: telegraf
   restart: always
+  user: 1000:995
   environment:
    - HOST_PROC=/host/proc
   privileged: true
@@ -34,6 +33,7 @@ telegraf:
     - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     - /proc:/host/proc:ro
     - /var/log:/host/var/log:ro
+    - /var/run/docker.sock:/var/run/docker.sock
 
 grafana:
   image: grafana/grafana:latest
@@ -41,8 +41,6 @@ grafana:
   restart: always
 #  mem_limit: 384m
   ports:
-    # port 3000 already taken
-    # - "3000:3000"
     - "3010:3000"
   env_file:
     - 'env.grafana'

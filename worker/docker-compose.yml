@@ -1,0 +1,17 @@
+telegraf:
+  image: telegraf:latest
+  container_name: telegraf
+  restart: always
+  user: 1000:995
+  environment:
+   - HOST_PROC=/host/proc
+  privileged: true
+#  mem_limit: 384m
+  ports:
+    # Expose Statsd UDP server to local host
+    - "8125:8125/udp"
+  volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - /proc:/host/proc:ro
+    - /var/log:/host/var/log:ro
+    - /var/run/docker.sock:/var/run/docker.sock
