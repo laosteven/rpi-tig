@@ -37,7 +37,7 @@ PASSWORD="$(grep INFLUXDB_ADMIN_PASSWORD env.influxdb | awk -F '=' '{print $2}')
 docker exec -it influxdb influx -password $PASSWORD -username 'admin' -database 'telegraf' -execute 'CREATE RETENTION POLICY "one_month" ON "telegraf" DURATION 30d REPLICATION 1 DEFAULT'
 echo "... done"
 
-echo "You should be able to access Grafana at http://localhost:3000/ in a few seconds"
+echo "You should be able to access Grafana at http://localhost:3010/ in a few seconds"
 echo "Obviously, use the hostname of your raspberry Pi if you are connecting remotely, not 'localhost'"
 echo "Default username/password is admin/admin. Please change this"
 echo "The stack will keep running and will restart on reboot unless you issue a 'docker-compose stop'"

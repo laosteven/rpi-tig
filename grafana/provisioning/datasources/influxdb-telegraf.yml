@@ -9,7 +9,7 @@ deleteDatasources:
 # list of datasources to insert/update depending
 # whats available in the database
 datasources:
-- name: Telegraf
+- name: Telegraf-kerberos
   type: influxdb
   access: proxy
   orgId: 1

@@ -41,7 +41,9 @@ grafana:
   restart: always
 #  mem_limit: 384m
   ports:
-    - "3000:3000"
+    # port 3000 already taken
+    # - "3000:3000"
+    - "3010:3000"
   env_file:
     - 'env.grafana'
   links:
