@@ -19,7 +19,7 @@ if [ $(grep -c "ADMIN_TO_CHANGE" env.influxdb) -ne 0 ]; then
 fi
 
 echo "Starting Telegraf and InfluxDB stack in the background"
-docker-compose up -f docker-compose.worker.yml -d
+docker-compose -f docker-compose.worker.yml up -d
 
 echo -n "Waiting for InfluxDB to come up..."
 sleep 20
